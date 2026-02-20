@@ -1,0 +1,1191 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "4e1d7afe-7dbd-4ff9-b119-9fc36da58426",
+   "metadata": {},
+   "source": [
+    "# chapter 32"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "342d85af-78f9-4684-b2a5-24c8a09247b6",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>name</th>\n",
+       "      <th>hours</th>\n",
+       "      <th>score</th>\n",
+       "      <th>gender</th>\n",
+       "      <th>grades</th>\n",
+       "      <th>class</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>Aarav</td>\n",
+       "      <td>8</td>\n",
+       "      <td>76</td>\n",
+       "      <td>M</td>\n",
+       "      <td>A</td>\n",
+       "      <td>9A</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>Riya</td>\n",
+       "      <td>5</td>\n",
+       "      <td>62</td>\n",
+       "      <td>F</td>\n",
+       "      <td>B</td>\n",
+       "      <td>9B</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>Kabir</td>\n",
+       "      <td>10</td>\n",
+       "      <td>88</td>\n",
+       "      <td>M</td>\n",
+       "      <td>A</td>\n",
+       "      <td>10A</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>Sana</td>\n",
+       "      <td>4</td>\n",
+       "      <td>55</td>\n",
+       "      <td>F</td>\n",
+       "      <td>C</td>\n",
+       "      <td>9A</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>Vivaan</td>\n",
+       "      <td>7</td>\n",
+       "      <td>72</td>\n",
+       "      <td>M</td>\n",
+       "      <td>B</td>\n",
+       "      <td>10B</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>Ishita</td>\n",
+       "      <td>6</td>\n",
+       "      <td>64</td>\n",
+       "      <td>F</td>\n",
+       "      <td>B</td>\n",
+       "      <td>9C</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>Rohan</td>\n",
+       "      <td>3</td>\n",
+       "      <td>48</td>\n",
+       "      <td>M</td>\n",
+       "      <td>D</td>\n",
+       "      <td>9B</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>7</th>\n",
+       "      <td>Meera</td>\n",
+       "      <td>9</td>\n",
+       "      <td>90</td>\n",
+       "      <td>F</td>\n",
+       "      <td>A</td>\n",
+       "      <td>11A</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>8</th>\n",
+       "      <td>Aditya</td>\n",
+       "      <td>2</td>\n",
+       "      <td>38</td>\n",
+       "      <td>M</td>\n",
+       "      <td>F</td>\n",
+       "      <td>9C</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>9</th>\n",
+       "      <td>Kavya</td>\n",
+       "      <td>11</td>\n",
+       "      <td>93</td>\n",
+       "      <td>F</td>\n",
+       "      <td>A</td>\n",
+       "      <td>12A</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "     name  hours  score gender grades class\n",
+       "0   Aarav      8     76      M      A    9A\n",
+       "1    Riya      5     62      F      B    9B\n",
+       "2   Kabir     10     88      M      A   10A\n",
+       "3    Sana      4     55      F      C    9A\n",
+       "4  Vivaan      7     72      M      B   10B\n",
+       "5  Ishita      6     64      F      B    9C\n",
+       "6   Rohan      3     48      M      D    9B\n",
+       "7   Meera      9     90      F      A   11A\n",
+       "8  Aditya      2     38      M      F    9C\n",
+       "9   Kavya     11     93      F      A   12A"
+      ]
+     },
+     "execution_count": 9,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "data = pd.read_csv(\"student_scores.csv\")\n",
+    "data.head(10)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "fa23066a-4f2f-44ba-a07f-5d6537882302",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "RangeIndex: 92 entries, 0 to 91\n",
+      "Data columns (total 6 columns):\n",
+      " #   Column  Non-Null Count  Dtype \n",
+      "---  ------  --------------  ----- \n",
+      " 0   name    92 non-null     object\n",
+      " 1   hours   92 non-null     int64 \n",
+      " 2   score   92 non-null     int64 \n",
+      " 3   gender  92 non-null     object\n",
+      " 4   grades  92 non-null     object\n",
+      " 5   class   92 non-null     object\n",
+      "dtypes: int64(2), object(4)\n",
+      "memory usage: 4.4+ KB\n"
+     ]
+    }
+   ],
+   "source": [
+    "data.info()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "id": "9bd2c13e-6756-4cf9-bea4-4cc37677c1f2",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>hours</th>\n",
+       "      <th>score</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>count</th>\n",
+       "      <td>92.000000</td>\n",
+       "      <td>92.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>mean</th>\n",
+       "      <td>6.510870</td>\n",
+       "      <td>68.836957</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>std</th>\n",
+       "      <td>2.265336</td>\n",
+       "      <td>15.692286</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>min</th>\n",
+       "      <td>2.000000</td>\n",
+       "      <td>35.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>25%</th>\n",
+       "      <td>5.000000</td>\n",
+       "      <td>57.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>50%</th>\n",
+       "      <td>7.000000</td>\n",
+       "      <td>70.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>75%</th>\n",
+       "      <td>8.000000</td>\n",
+       "      <td>82.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>max</th>\n",
+       "      <td>11.000000</td>\n",
+       "      <td>94.000000</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "           hours      score\n",
+       "count  92.000000  92.000000\n",
+       "mean    6.510870  68.836957\n",
+       "std     2.265336  15.692286\n",
+       "min     2.000000  35.000000\n",
+       "25%     5.000000  57.000000\n",
+       "50%     7.000000  70.000000\n",
+       "75%     8.000000  82.000000\n",
+       "max    11.000000  94.000000"
+      ]
+     },
+     "execution_count": 11,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "data.describe()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "5fbe7e2b-3fde-47a9-a797-5d0897aad806",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['name', 'hours', 'score', 'gender', 'grades', 'class']"
+      ]
+     },
+     "execution_count": 12,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "data.columns.tolist()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "6193f75e-ef0e-4f69-b786-2354f66e1b7d",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(92, 6)"
+      ]
+     },
+     "execution_count": 13,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "data.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "id": "cdbe0807-ada7-4a8c-b366-d539add85340",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>name</th>\n",
+       "      <th>hours</th>\n",
+       "      <th>score</th>\n",
+       "      <th>gender</th>\n",
+       "      <th>grades</th>\n",
+       "      <th>class</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>87</th>\n",
+       "      <td>Prisha</td>\n",
+       "      <td>4</td>\n",
+       "      <td>52</td>\n",
+       "      <td>F</td>\n",
+       "      <td>C</td>\n",
+       "      <td>9A</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>88</th>\n",
+       "      <td>Neil</td>\n",
+       "      <td>10</td>\n",
+       "      <td>88</td>\n",
+       "      <td>M</td>\n",
+       "      <td>A</td>\n",
+       "      <td>12C</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>89</th>\n",
+       "      <td>Rutvi</td>\n",
+       "      <td>7</td>\n",
+       "      <td>73</td>\n",
+       "      <td>F</td>\n",
+       "      <td>B</td>\n",
+       "      <td>10A</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>90</th>\n",
+       "      <td>Harshit</td>\n",
+       "      <td>5</td>\n",
+       "      <td>57</td>\n",
+       "      <td>M</td>\n",
+       "      <td>C</td>\n",
+       "      <td>9B</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>91</th>\n",
+       "      <td>Vritti</td>\n",
+       "      <td>8</td>\n",
+       "      <td>81</td>\n",
+       "      <td>F</td>\n",
+       "      <td>A</td>\n",
+       "      <td>11B</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "       name  hours  score gender grades class\n",
+       "87   Prisha      4     52      F      C    9A\n",
+       "88     Neil     10     88      M      A   12C\n",
+       "89    Rutvi      7     73      F      B   10A\n",
+       "90  Harshit      5     57      M      C    9B\n",
+       "91   Vritti      8     81      F      A   11B"
+      ]
+     },
+     "execution_count": 14,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "data.tail(5)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "id": "cf34df40-3f6d-45c6-ad85-86612d8e0b20",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "import matplotlib.pyplot as plt\n",
+    "from sklearn.linear_model import LinearRegression"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "id": "2d723883-504f-4b45-b426-fe6e97cf113b",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>name</th>\n",
+       "      <th>hours</th>\n",
+       "      <th>score</th>\n",
+       "      <th>gender</th>\n",
+       "      <th>grades</th>\n",
+       "      <th>class</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>Aarav</td>\n",
+       "      <td>8</td>\n",
+       "      <td>76</td>\n",
+       "      <td>M</td>\n",
+       "      <td>A</td>\n",
+       "      <td>9A</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>Riya</td>\n",
+       "      <td>5</td>\n",
+       "      <td>62</td>\n",
+       "      <td>F</td>\n",
+       "      <td>B</td>\n",
+       "      <td>9B</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>Kabir</td>\n",
+       "      <td>10</td>\n",
+       "      <td>88</td>\n",
+       "      <td>M</td>\n",
+       "      <td>A</td>\n",
+       "      <td>10A</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>Sana</td>\n",
+       "      <td>4</td>\n",
+       "      <td>55</td>\n",
+       "      <td>F</td>\n",
+       "      <td>C</td>\n",
+       "      <td>9A</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>Vivaan</td>\n",
+       "      <td>7</td>\n",
+       "      <td>72</td>\n",
+       "      <td>M</td>\n",
+       "      <td>B</td>\n",
+       "      <td>10B</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>Ishita</td>\n",
+       "      <td>6</td>\n",
+       "      <td>64</td>\n",
+       "      <td>F</td>\n",
+       "      <td>B</td>\n",
+       "      <td>9C</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>Rohan</td>\n",
+       "      <td>3</td>\n",
+       "      <td>48</td>\n",
+       "      <td>M</td>\n",
+       "      <td>D</td>\n",
+       "      <td>9B</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>7</th>\n",
+       "      <td>Meera</td>\n",
+       "      <td>9</td>\n",
+       "      <td>90</td>\n",
+       "      <td>F</td>\n",
+       "      <td>A</td>\n",
+       "      <td>11A</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>8</th>\n",
+       "      <td>Aditya</td>\n",
+       "      <td>2</td>\n",
+       "      <td>38</td>\n",
+       "      <td>M</td>\n",
+       "      <td>F</td>\n",
+       "      <td>9C</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>9</th>\n",
+       "      <td>Kavya</td>\n",
+       "      <td>11</td>\n",
+       "      <td>93</td>\n",
+       "      <td>F</td>\n",
+       "      <td>A</td>\n",
+       "      <td>12A</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "     name  hours  score gender grades class\n",
+       "0   Aarav      8     76      M      A    9A\n",
+       "1    Riya      5     62      F      B    9B\n",
+       "2   Kabir     10     88      M      A   10A\n",
+       "3    Sana      4     55      F      C    9A\n",
+       "4  Vivaan      7     72      M      B   10B\n",
+       "5  Ishita      6     64      F      B    9C\n",
+       "6   Rohan      3     48      M      D    9B\n",
+       "7   Meera      9     90      F      A   11A\n",
+       "8  Aditya      2     38      M      F    9C\n",
+       "9   Kavya     11     93      F      A   12A"
+      ]
+     },
+     "execution_count": 16,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "data.head(10)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "id": "fc1a92b9-f309-425e-a326-ebeda2b53354",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "name      0\n",
+       "hours     0\n",
+       "score     0\n",
+       "gender    0\n",
+       "grades    0\n",
+       "class     0\n",
+       "dtype: int64"
+      ]
+     },
+     "execution_count": 17,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "data.isnull().sum()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 31,
+   "id": "0dd9197a-3ed4-4ed1-a320-c72b5720a8aa",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>hours</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>71</th>\n",
+       "      <td>6</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>43</th>\n",
+       "      <td>6</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>32</th>\n",
+       "      <td>4</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>42</th>\n",
+       "      <td>10</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>38</th>\n",
+       "      <td>5</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>...</th>\n",
+       "      <td>...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>12</th>\n",
+       "      <td>4</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>89</th>\n",
+       "      <td>7</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>45</th>\n",
+       "      <td>9</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>91</th>\n",
+       "      <td>8</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>37</th>\n",
+       "      <td>9</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>73 rows × 1 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "    hours\n",
+       "71      6\n",
+       "43      6\n",
+       "32      4\n",
+       "42     10\n",
+       "38      5\n",
+       "..    ...\n",
+       "12      4\n",
+       "89      7\n",
+       "45      9\n",
+       "91      8\n",
+       "37      9\n",
+       "\n",
+       "[73 rows x 1 columns]"
+      ]
+     },
+     "execution_count": 31,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "X = data[[\"hours\"]]\n",
+    "y = data[\"score\"]\n",
+    "model = LinearRegression()\n",
+    "from sklearn.model_selection import train_test_split\n",
+    "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=30)\n",
+    "X_train"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 21,
+   "id": "d2ebb3f7-cb5f-4458-b356-9dd29a00967d",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdin",
+     "output_type": "stream",
+     "text": [
+      "enter a number:  50\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[366.71771059]\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "C:\\ProgramData\\anaconda3\\Lib\\site-packages\\sklearn\\utils\\validation.py:2739: UserWarning: X does not have valid feature names, but LinearRegression was fitted with feature names\n",
+      "  warnings.warn(\n"
+     ]
+    }
+   ],
+   "source": [
+    "model.fit(X,y)\n",
+    "prediction = model.predict([[int(input(\"enter a number: \"))]])\n",
+    "print(prediction)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 35,
+   "id": "72aa6fd3-b259-4962-90ba-90036666d85b",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "image/png": "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",
+      "text/plain": [
+       "<Figure size 640x480 with 1 Axes>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "import matplotlib.pyplot as plt\n",
+    "X = list(range(0, 91))\n",
+    "y = [i*2 for i in range(0,91)]\n",
+    "Datapoint = [f'D{i}' for i in range(0, 91)]\n",
+    "plt.bar(X,y)\n",
+    "plt.xlabel(\"Hours\")\n",
+    "plt.ylabel(\"Score\")\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "id": "fe2cf9c4-04f4-45c4-a777-69c904902a32",
+   "metadata": {
+    "scrolled": true
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "       name  hours  score  gender grades class\n",
+      "0     Aarav      8     76       1      A    9A\n",
+      "1      Riya      5     62       0      B    9B\n",
+      "2     Kabir     10     88       1      A   10A\n",
+      "3      Sana      4     55       0      C    9A\n",
+      "4    Vivaan      7     72       1      B   10B\n",
+      "5    Ishita      6     64       0      B    9C\n",
+      "6     Rohan      3     48       1      D    9B\n",
+      "7     Meera      9     90       0      A   11A\n",
+      "8    Aditya      2     38       1      F    9C\n",
+      "9     Kavya     11     93       0      A   12A\n",
+      "10    Naman      5     60       1      B   10A\n",
+      "11   Jhanvi      7     70       0      B   11B\n",
+      "12   Pranav      4     52       1      C    9A\n",
+      "13     Tara      9     85       0      A   12B\n",
+      "14     Yash      6     66       1      B   10C\n",
+      "15    Anaya      8     78       0      A   11A\n",
+      "16    Harsh      3     45       1      D    9A\n",
+      "17     Diya     10     89       0      A   12C\n",
+      "18  Sarthak      6     63       1      B   10B\n",
+      "19    Manya      7     74       0      B   11B\n"
+     ]
+    }
+   ],
+   "source": [
+    "from sklearn.preprocessing import LabelEncoder\n",
+    "le = LabelEncoder()\n",
+    "data[\"gender\"] = le.fit_transform(data[\"gender\"])\n",
+    "print(data.head(20))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 35,
+   "id": "958eac36-95fc-4c49-b980-c32f904bca2d",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "       name  hours  score  gender grades class  class_encoded\n",
+      "0     Aarav      8     76       1      A    9A              0\n",
+      "1      Riya      5     62       0      B    9B              1\n",
+      "2     Kabir     10     88       1      A   10A              0\n",
+      "3      Sana      4     55       0      C    9A              2\n",
+      "4    Vivaan      7     72       1      B   10B              1\n",
+      "5    Ishita      6     64       0      B    9C              1\n",
+      "6     Rohan      3     48       1      D    9B              3\n",
+      "7     Meera      9     90       0      A   11A              0\n",
+      "8    Aditya      2     38       1      F    9C              4\n",
+      "9     Kavya     11     93       0      A   12A              0\n",
+      "10    Naman      5     60       1      B   10A              1\n",
+      "11   Jhanvi      7     70       0      B   11B              1\n",
+      "12   Pranav      4     52       1      C    9A              2\n",
+      "13     Tara      9     85       0      A   12B              0\n",
+      "14     Yash      6     66       1      B   10C              1\n",
+      "15    Anaya      8     78       0      A   11A              0\n",
+      "16    Harsh      3     45       1      D    9A              3\n",
+      "17     Diya     10     89       0      A   12C              0\n",
+      "18  Sarthak      6     63       1      B   10B              1\n",
+      "19    Manya      7     74       0      B   11B              1\n"
+     ]
+    }
+   ],
+   "source": [
+    "le = LabelEncoder()\n",
+    "data[\"class_encoded\"] = le.fit_transform(data[\"grades\"])\n",
+    "print(data.head(20))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 45,
+   "id": "121e956f-071e-4d1d-8988-125851a016c3",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>hours</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>67</th>\n",
+       "      <td>9</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>24</th>\n",
+       "      <td>4</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>34</th>\n",
+       "      <td>2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>81</th>\n",
+       "      <td>10</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>8</th>\n",
+       "      <td>2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>59</th>\n",
+       "      <td>8</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>8</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>70</th>\n",
+       "      <td>8</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>72</th>\n",
+       "      <td>2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>21</th>\n",
+       "      <td>5</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>54</th>\n",
+       "      <td>8</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>10</th>\n",
+       "      <td>5</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>74</th>\n",
+       "      <td>7</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>7</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>80</th>\n",
+       "      <td>3</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>75</th>\n",
+       "      <td>5</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>56</th>\n",
+       "      <td>9</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>5</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>79</th>\n",
+       "      <td>8</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "    hours\n",
+       "67      9\n",
+       "24      4\n",
+       "34      2\n",
+       "81     10\n",
+       "8       2\n",
+       "59      8\n",
+       "0       8\n",
+       "70      8\n",
+       "72      2\n",
+       "21      5\n",
+       "54      8\n",
+       "10      5\n",
+       "74      7\n",
+       "4       7\n",
+       "80      3\n",
+       "75      5\n",
+       "56      9\n",
+       "1       5\n",
+       "79      8"
+      ]
+     },
+     "execution_count": 45,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "from sklearn.preprocessing import StandardScaler\n",
+    "scaler = StandardScaler()\n",
+    "X_train_scaled = scaler.fit_transform(X_train)\n",
+    "X_test_scaled = scaler.transform(X_test)\n",
+    "X_test"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 46,
+   "id": "7fb5ba5e-bd46-4e0a-b422-c9f5e518ecec",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(73, 1)"
+      ]
+     },
+     "execution_count": 46,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "X_train.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 47,
+   "id": "1f581572-8fd1-4ffc-9fed-58540eb770b0",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(19, 1)"
+      ]
+     },
+     "execution_count": 47,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "X_test.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 48,
+   "id": "2ec2adf1-8c6a-43b2-afbc-09907311a3a0",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(73,)"
+      ]
+     },
+     "execution_count": 48,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "y_train.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 49,
+   "id": "78075eeb-75f7-4d34-91c6-5f420222aad3",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(19,)"
+      ]
+     },
+     "execution_count": 49,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "y_test.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 58,
+   "id": "ef16e1da-d661-4f26-b7ee-d78034783935",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([1.21668277e-17])"
+      ]
+     },
+     "execution_count": 58,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "X_train_scaled.mean(axis=0)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 59,
+   "id": "86954a10-82a4-4d05-b6ba-fb264c09d56b",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([1.])"
+      ]
+     },
+     "execution_count": 59,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "X_train_scaled.std(axis=0)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6d7ca978-54ca-4689-ac91-46ce4748b23f",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.13.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
